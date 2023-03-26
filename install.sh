@@ -8,5 +8,5 @@ rm Anaconda3-2023.03-Linux-x86_64.sh
 
 #Install docker and docker-compose
 
-sudo apt-get update
-sudo apt-get install docker.io
+sudo apt-get -y update
+sudo apt-get -y install docker.io
