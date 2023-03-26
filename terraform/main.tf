@@ -9,8 +9,8 @@ terraform {
 }
 
 provider "google" {
-  project = "${var.project}"
-  region = "${var.region}"
+  project = "${project}"
+  region = "${region}"
   // credentials = file(var.credentials)  # Use this if you do not want to set env-var GOOGLE_APPLICATION_CREDENTIALS
 }
 
@@ -53,13 +53,13 @@ resource "google_raw_dataset" "dataset" {
 
 resource "google_stage_dataset" "dataset" {
   dataset_id = var.stagedataset
-  project    = "${var.project}"
-  location   = "${var.region}"
+  project    = "${project}"
+  location   = "${region}"
 }
 
 
 resource "google_dwh_dataset" "dataset" {
   dataset_id = var.dwh
-  project    = "${var.project}"
-  location   = "${var.region}"
+  project    = "${project}"
+  location   = "${region}"
 }
