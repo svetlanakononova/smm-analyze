@@ -9,8 +9,8 @@ terraform {
 }
 
 provider "google" {
-  project = var.project
-  region = var.region
+  project = "${var.project}"
+  region = "${var.region}"
   // credentials = file(var.credentials)  # Use this if you do not want to set env-var GOOGLE_APPLICATION_CREDENTIALS
 }
 
@@ -18,7 +18,7 @@ provider "google" {
 # Ref: https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket
 resource "google_storage_bucket" "data-lake-bucket" {
   name          = "data_lake_bucket_${var.project}" 
-  location      = var.region
+  location      = "${var.region}"
 
   # Optional, but recommended settings:
   storage_class = STANDART
@@ -46,20 +46,20 @@ resource "google_storage_bucket" "data-lake-bucket" {
 
 resource "google_raw_dataset" "dataset" {
   dataset_id = var.rawdataset
-  project    = var.project
-  location   = var.region
+  project    = "${var.project}"
+  location   = "${var.region}"
 }
 
 
 resource "google_stage_dataset" "dataset" {
   dataset_id = var.stagedataset
-  project    = var.project
-  location   = var.region
+  project    = "${var.project}"
+  location   = "${var.region}"
 }
 
 
 resource "google_dwh_dataset" "dataset" {
   dataset_id = var.dwh
-  project    = var.project
-  location   = var.region
+  project    = "${var.project}"
+  location   = "${var.region}"
 }
