@@ -1,6 +1,9 @@
 #!/bin/sh
 
-sudo apt install git
+mkdir .google
+mv .gc .google/
+
+sudo apt update && sudo apt-get -y install git
 git clone https://github.com/svetlanakononova/smm-analyze.git
 
 
@@ -32,3 +35,4 @@ echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://
 sudo apt update && sudo apt-get install terraform
 
 cd terraform
+

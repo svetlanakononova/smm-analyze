@@ -50,3 +50,6 @@ gcloud compute project-info add-metadata --metadata-from-file ssh-keys=gckey_gc.
 rm gckey_gc.pub
 
 scp  ~/.google/creds/google_creds.json $VM_USER_NAME@$VM_INSTANCE_NAME:gc
+
+chmod +x install.sh
+scp  install.sh $VM_USER_NAME@$VM_INSTANCE_NAME:install.sh
