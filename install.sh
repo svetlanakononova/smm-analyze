@@ -43,7 +43,6 @@ cd terraform
 
 cd ../prefect
 
-conda create -n smmenv python=3.9
-conda activate smmenv
+./conda_config.sh
 
-pip install -r reqs.txt
+./install_prefect.sh
