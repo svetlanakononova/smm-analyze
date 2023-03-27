@@ -18,6 +18,12 @@ gcloud config set project $PROJECT_ID
 gcloud iam service-accounts create $SERVICE_ACCOUNT_NAME --display-name="SMM analyze Service Account"
 gcloud iam service-accounts keys create ~/.google/creds/google_creds.json --iam-account=$SERVICE_ACCOUNT_NAME@$PROJECT_ID.iam.gserviceaccount.com
 
+gcloud projects add-iam-policy-binding $PROJECT_ID --member=serviceAccount:$SERVICE_ACCOUNT_NAME@$PROJECT_ID.iam.gserviceaccount.com --role=roles/storage.admin
+gcloud projects add-iam-policy-binding $PROJECT_ID --member=serviceAccount:$SERVICE_ACCOUNT_NAME@$PROJECT_ID.iam.gserviceaccount.com --role=roles/bigquery.admin
+gcloud projects add-iam-policy-binding $PROJECT_ID --member=serviceAccount:$SERVICE_ACCOUNT_NAME@$PROJECT_ID.iam.gserviceaccount.com --role=roles/storage.objectAdmin
+gcloud projects add-iam-policy-binding $PROJECT_ID --member=serviceAccount:$SERVICE_ACCOUNT_NAME@$PROJECT_ID.iam.gserviceaccount.com --role=roles/viewer
+
+
 #gcloud compute instances create $VM_INSTANCE_NAME \
 #    --project=$PROJECT_ID \
 #    --zone=$REGION \
@@ -49,7 +55,7 @@ echo "    IdentityFile ~/.ssh/gckey" >> ~/.ssh/config
 gcloud compute project-info add-metadata --metadata-from-file ssh-keys=gckey_gc.pub
 rm gckey_gc.pub
 
-scp  ~/.google/creds/google_creds.json $VM_USER_NAME@$VM_INSTANCE_NAME:gc
+scp  ~/.google/creds/google_creds.json $VM_USER_NAME@$VM_INSTANCE_NAME:.gc
 
 chmod +x install.sh
 scp  install.sh $VM_USER_NAME@$VM_INSTANCE_NAME:install.sh

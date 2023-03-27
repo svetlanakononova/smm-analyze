@@ -3,15 +3,17 @@
 mkdir .google
 mv .gc .google/google_creds.json
 
-sudo apt update && sudo apt-get -y install git
+sudo apt update && sudo apt-get -y install git nano
 git clone https://github.com/svetlanakononova/smm-analyze.git
 
 
 #Install Anaconda
-wget https://repo.anaconda.com/archive/Anaconda3-2023.03-Linux-x86_64.sh
-chmod +x Anaconda3-2023.03-Linux-x86_64.sh
-./Anaconda3-2023.03-Linux-x86_64.sh
-rm Anaconda3-2023.03-Linux-x86_64.sh
+if [ ! -d "~/anaconda" ]; then
+    wget https://repo.anaconda.com/archive/Anaconda3-2023.03-Linux-x86_64.sh
+    chmod +x Anaconda3-2023.03-Linux-x86_64.sh
+    ./Anaconda3-2023.03-Linux-x86_64.sh
+    rm Anaconda3-2023.03-Linux-x86_64.sh
+fi
 
 #Install docker and docker-compose
 
@@ -34,5 +36,14 @@ wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | sudo tee /usr/
 echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
 sudo apt update && sudo apt-get install terraform
 
-cd terraform
+cd smm-analyze
 
+cd terraform
+./apply.sh
+
+cd ../prefect
+
+conda create -n smmenv python=3.9
+conda activate smmenv
+
+pip install -r reqs.txt
