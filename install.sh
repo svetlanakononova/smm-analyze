@@ -1,7 +1,7 @@
 #!/bin/sh
 
 mkdir .google
-mv .gc .google/
+mv .gc .google/google_creds.json
 
 sudo apt update && sudo apt-get -y install git
 git clone https://github.com/svetlanakononova/smm-analyze.git
