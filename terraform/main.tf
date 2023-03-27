@@ -18,10 +18,10 @@ provider "google" {
 # Ref: https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket
 resource "google_storage_bucket" "data-lake-bucket" {
   name          = "data_lake_bucket_${var.project}" 
-  location      = "${var.region}"
+  location      = var.region
 
   # Optional, but recommended settings:
-  storage_class = "STANDART"
+  storage_class = "STANDARD"
   uniform_bucket_level_access = true
 
   versioning {
