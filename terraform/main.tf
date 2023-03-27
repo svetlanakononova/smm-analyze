@@ -21,7 +21,7 @@ resource "google_storage_bucket" "data-lake-bucket" {
   location      = "${var.region}"
 
   # Optional, but recommended settings:
-  storage_class = STANDART
+  storage_class = "STANDART"
   uniform_bucket_level_access = true
 
   versioning {
@@ -44,22 +44,22 @@ resource "google_storage_bucket" "data-lake-bucket" {
 # Ref: https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/bigquery_dataset
 
 
-resource "google_raw_dataset" "dataset" {
+resource "google_bigquery_dataset" "dataset" {
   dataset_id = var.rawdataset
-  project    = "${var.project}"
-  location   = "${var.region}"
+  project    = var.project
+  location   = var.region
 }
 
 
-resource "google_stage_dataset" "dataset" {
+resource "google_bigquery_dataset" "dataset" {
   dataset_id = var.stagedataset
-  project    = "${project}"
-  location   = "${region}"
+  project    = project
+  location   = region
 }
 
 
-resource "google_dwh_dataset" "dataset" {
+resource "google_bigquery_dataset" "dataset" {
   dataset_id = var.dwh
-  project    = "${project}"
-  location   = "${region}"
+  project    = var.project
+  location   = var.region
 }
