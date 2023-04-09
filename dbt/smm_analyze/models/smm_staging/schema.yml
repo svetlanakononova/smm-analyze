@@ -1,0 +1,42 @@
+
+version: 2
+
+sources:
+  - name: smm_raw_dataset
+    database: smm-analyze-prj
+    tables:
+      - name: clears_ext
+      - name: courses_ext
+      - name: likes_ext
+      - name: players_ext
+      - name: plays_ext
+      - name: records_ext
+      - name: course_meta_ext
+
+models:
+  - name: courses
+    description: "Levels for SMM"
+   
+  - name: clears
+    description: "Successful completion of the levels"
+  
+  - name: likes
+    description: "SMM level likes"
+
+  - name: players
+    description: "SMM players"
+
+  - name: plays
+    description: "Attempts to pass SMM levels"
+
+  - name: records
+    description: "Level records"
+
+  - name: course_meta
+    description: "Additional info about Levels for SMM"
+
+
+    
+  
+
+    

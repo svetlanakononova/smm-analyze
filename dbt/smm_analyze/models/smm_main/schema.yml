@@ -1,0 +1,10 @@
+
+version: 2
+
+models:
+  - name: level_clean_mart
+    description: "Data about levels and players who have passed them"
+  
+  - name: level_creation_mart
+    description: "Data about created levels and their creators"  
+   
